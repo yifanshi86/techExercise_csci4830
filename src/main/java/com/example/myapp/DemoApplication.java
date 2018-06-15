@@ -1,19 +1,24 @@
-package demo;
+package com.example.myapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.*;
 
-@Controller
+//@Controller
 @SpringBootApplication
 public class DemoApplication {
 
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-      return "Hello World!";
-    }
+//    @RequestMapping("/")
+//    @ResponseBody
+//    String home() {
+//      return "Hello World! Yifan for Testing";
+//    }
+//    
+//    @RequestMapping("/list")
+//    @ResponseBody
+//    String getToDoList()
+//    {
+//        return "no tasks to do";
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
