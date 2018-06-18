@@ -5,12 +5,17 @@
  */
 package com.example.myapp.todolist;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author yifan
  */
+@Entity
 public class ToDo {
-    private int id;
+    @Id
+    private Integer id;
     private String description;
     private boolean isDone;
     
@@ -20,7 +25,7 @@ public class ToDo {
         description = "unknown";
         isDone = false;
     }
-    public ToDo(int inId, String descrp)
+    public ToDo(Integer inId, String descrp)
     {
         id = inId;
         description = descrp;
@@ -47,12 +52,12 @@ public class ToDo {
         return description;
     }
     
-    public void setID(int newID)
+    public void setID(Integer newID)
     {
         id = newID;
     }
     
-    public int getID()
+    public Integer getID()
     {
         return id;
     }

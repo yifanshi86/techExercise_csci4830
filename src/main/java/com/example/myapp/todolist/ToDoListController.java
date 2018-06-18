@@ -39,7 +39,7 @@ public class ToDoListController {
     }
     
     @RequestMapping("/todos/{id}")
-    public ToDo getToDo(@PathVariable int id){
+    public ToDo getToDo(@PathVariable Integer id){
         return todolistService.getToDoByID(id);
     }
 
@@ -49,12 +49,12 @@ public class ToDoListController {
     }
     
     @PutMapping("/todos/{id}")
-    public void updateToDo(@RequestBody ToDo todo, @PathVariable int id) {
+    public void updateToDo(@RequestBody ToDo todo, @PathVariable Integer id) {
         todolistService.updateToDo(id, todo);
     }
     
     @DeleteMapping("/todos/{id}")
-    public void deleteToDo(@PathVariable int id){
+    public void deleteToDo(@PathVariable Integer id){
         todolistService.deleteToDo(id);
     }
 }

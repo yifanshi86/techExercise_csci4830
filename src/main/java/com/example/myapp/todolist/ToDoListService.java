@@ -5,8 +5,8 @@
  */
 package com.example.myapp.todolist;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,83 +15,39 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ToDoListService {
-    private List<ToDo> todos = new ArrayList<>(Arrays.asList(
-    new ToDo(0, "shopping for grocery"),
-    new ToDo(1, "homework for csci4830"),
-    new ToDo(2, "get vehcile window glass replaced")));
     
-//    public ToDoListService()
-//    {
-//        tasks = new ArrayList<ToDo>();
-//    }
+    @Autowired
+    private ToDoListRepository todolistRepository;
+    
     
     public List<ToDo> getAllToDos()
     {
-        return todos;
+        //return todos;
+        List<ToDo> todo = new ArrayList<>();
+        todolistRepository.findAll()
+                .forEach(todo::add);
+        return todo;
     }
     
-    
-    public void addToDoByDescription(String tskDescrp)
-    {
-        int id = todos.size();
-        todos.add(new ToDo(id, tskDescrp));
-    }
     
     public void addToDo(ToDo todo)
     {
-        todos.add(todo);
+        todolistRepository.save(todo);
     }
     
-    public ToDo getToDoByID(int id)
+    public ToDo getToDoByID(Integer id)
     {
-        for (int i = 0; i < todos.size(); i++)
-        {
-            ToDo temp = todos.get(i);
-            if (temp.getID() == id)
-            {
-                return temp;
-            }
-        }
-        return null;
+        return todolistRepository.findById(id).get();
     }
     
-    public ToDo getToDoByDescription(String tskDescrp)
+    public void updateToDo(Integer id, ToDo todo)
     {
-        for (int i = 0; i < todos.size(); i++)
-        {
-            ToDo temp = todos.get(i);
-            if (temp.getDescription().equals(tskDescrp))
-            {
-                return temp;
-            }
-        }
-
-        return null;
+        todolistRepository.save(todo);
     }
     
-    public void updateToDo(int id, ToDo todo)
+    public void deleteToDo(Integer id)
     {
-        for (int i = 0; i < todos.size(); i++)
-        {
-            ToDo temp = todos.get(i);
-            if (temp.getID() == id)
-            {
-                todos.set(i, todo);
-                break;
-            }
-        }
-    }
-    
-    public void deleteToDo(int id)
-    {
-        for (int i = 0; i < todos.size(); i++)
-        {
-            if (todos.get(i).getID() == id)
-            {
-                todos.remove(i);
-                break;
-            }
-        }
+        todolistRepository.deleteById(id);
     }
     
     
