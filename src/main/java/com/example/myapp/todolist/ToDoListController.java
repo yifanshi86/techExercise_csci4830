@@ -26,6 +26,15 @@ public class ToDoListController {
     @Autowired
     private ToDoListService todolistService;
 
+//    @Value("${spring.application.name}")
+//    String appName;
+//    
+//    @GetMapping("/")
+//    public String homePage(Model model){
+//        model.addAllAttributes("appName", appName);
+//        return "home";
+//    }
+    
     @RequestMapping("/hi")
     @ResponseBody
     public String sayHi() {
